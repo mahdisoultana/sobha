@@ -13,8 +13,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
-        <meta name="description" content="Description" />
-        <meta name="keywords" content="Keywords" />
+        <meta
+          name="description"
+          content="تصميم من مهدي سولطنة لتسبيح  وذكر مستوحاة من عتكاف جماعتي للعدل  والإحسان نسألكم الدعاء "
+        />
+        <meta
+          name="keywords"
+          content="mahdi soultana , sobha ,العدل والإحسان"
+        />
         <title> 📿 سبحتي في جماعتي 📿 </title>
 
         <link rel="manifest" href="/manifest.json" />

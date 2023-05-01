@@ -1,8 +1,8 @@
 {
   "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
-  "theme_color": "#ffffff",
-  "background_color": "#004740",
+  "short_name": " سبحتي في جماعتي  ",
+  "theme_color": "#1e293b",
+  "background_color": "#111827",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
