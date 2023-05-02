@@ -1,9 +1,12 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { useEffect } from 'react';
 import Confetti from 'react-confetti';
 import { useAdrak, useCounter } from '../state/store';
 import CloseButton from './CloseButton';
 import Counter from './Counter';
+import useTime from './hooks/useTime';
 import Progress from './Progress';
+import RePlayButton from './RePlayButton';
 import Text from './Text';
 const variant: Variants = {
   animate: { scaleY: 1, transition: { duration: 0.5, delayChildren: 0.5 } },
@@ -19,13 +22,14 @@ function OverLay() {
   const { dikrNiya, selected } = useAdrak();
 
   const { increment, count } = useCounter();
-  // const { isExpire, run } = useTime({ time: 10 });
+  const { isExpire, run } = useTime({ time: 3 });
   const dikrNiyaNum = dikrNiya ? +dikrNiya : 0;
-  // useEffect(() => {
-  //   if (count == dikrNiyaNum) {
-  //     run();
-  //   }
-  // }, [count]);
+  useEffect(() => {
+    if (count == dikrNiyaNum) {
+      run();
+    }
+  }, [count]);
+  console.log({ isExpire });
   return (
     <AnimatePresence>
       {selected && dikrNiyaNum && (
@@ -44,16 +48,18 @@ function OverLay() {
           }}
         >
           <CloseButton />
-          {count == +dikrNiyaNum && (
+          {count == +dikrNiyaNum && !isExpire && (
             <Confetti width={window.innerWidth} height={window.innerHeight} />
           )}
           <motion.div
+            layout
             variants={variantC}
             className="p-2 h-screen flex items-center justify-center flex-col opacity-100 select-none"
           >
             <Progress />
             <Counter />
             <Text />
+            {count == +dikrNiyaNum && <RePlayButton />}
           </motion.div>
         </motion.section>
       )}

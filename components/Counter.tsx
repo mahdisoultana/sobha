@@ -4,6 +4,7 @@ function Counter() {
   const count = useCounter((s) => s.count);
   return (
     <motion.div
+      layout
       key={count}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}

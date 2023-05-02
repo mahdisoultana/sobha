@@ -14,6 +14,7 @@ export const useAdrak = create<{
   setSelected: (id: string | null) => void;
   getDikr: () => Dikr | null;
   resetDikr: () => void;
+  setAdkar: (newOrder: any) => void;
 }>((set, get) => ({
   adkar: [
     { text: '   سبحان الله', id: id() },
@@ -23,6 +24,9 @@ export const useAdrak = create<{
   ],
   add: (dikr: Dikr) => {
     set({ ...get(), adkar: [...get().adkar, dikr] });
+  },
+  setAdkar: (s: any) => {
+    set({ ...get(), adkar: s });
   },
   selected: null,
   setSelected: (id: string | null) => {

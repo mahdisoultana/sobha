@@ -1,6 +1,6 @@
+import { Variants, motion } from 'framer-motion';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { RecoilRoot } from 'recoil';
 import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -101,9 +101,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="theme-color" content="#0f1526" />
       </Head>
-      <RecoilRoot>
+      <motion.section
+        variants={variant}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <Component {...pageProps} />
-      </RecoilRoot>
+      </motion.section>
     </>
   );
 }
+
+const variant: Variants = {
+  animate: { opacity: 1, transition: { duration: 0.5, delayChildren: 0.5 } },
+  initial: { opacity: 0 },
+  exit: { opacity: 0, transition: { duration: 0.6, delayChildren: -0.1 } },
+};

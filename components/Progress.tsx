@@ -11,11 +11,11 @@ function Progress() {
         className="block h-full bg-green-500/70 group-hover:bg-green-500 group-focus:bg-green-500 group-focus-within:bg-green-500"
         style={{ width: (count / (dikrNiya ? +dikrNiya : 100)) * 100 + '%' }}
       />
-      <small className="absolute bottom-[115%] left-1 text-white/10 group-hover:text-white group-focus:text-white group-focus-within:text-white">
+      <small className="absolute bottom-[115%] left-1 text-white/80 group-hover:text-white group-focus:text-white group-focus-within:text-white">
         0
       </small>
       {/*  */}
-      <small className="absolute bottom-[115%] right-1 text-white/10 group-hover:text-white group-focus:text-white group-focus-within:text-white">
+      <small className="absolute bottom-[115%] right-1 text-white/80 group-hover:text-white group-focus:text-white group-focus-within:text-white">
         {dikrNiya}
       </small>
     </div>

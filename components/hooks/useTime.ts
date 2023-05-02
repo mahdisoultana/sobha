@@ -8,6 +8,7 @@ function useTime({
   autoStart?: boolean;
 }) {
   const [isExpire, setIsExpire] = useState(true);
+
   const run = useCallback(() => {
     let timer: any;
 
