@@ -31,7 +31,7 @@ function CardDikrButton({ text, id }: { text: string; id: string }) {
     >
       {editMode && (
         <span
-          className="block w-[40px] h-[40px]  absolute left-4 justify-center flex items-center "
+          className=" w-[40px] h-[40px]  absolute left-4 justify-center flex items-center "
           onClick={() =>
             setAdkar((adkar) => adkar.filter((dikr) => dikr.id !== id))
           }
