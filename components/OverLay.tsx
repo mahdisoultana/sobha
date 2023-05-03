@@ -1,7 +1,9 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { useEffect } from 'react';
 import Confetti from 'react-confetti';
+import { IoClose } from 'react-icons/io5';
 import { useAdrak, useCounter } from '../state/store';
+import Slide from './animate/Slide';
 import CloseButton from './CloseButton';
 import Counter from './Counter';
 import useTime from './hooks/useTime';
@@ -29,18 +31,11 @@ function OverLay() {
       run();
     }
   }, [count]);
-  console.log({ isExpire });
   return (
     <AnimatePresence>
       {selected && dikrNiyaNum && (
-        <motion.section
-          variants={variant}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.5 }}
-          className="fixed origin-bottom top-0 left-0 bg-gray-900 h-screen w-full "
-          //   onClick={increment} -> TS error increment accept void | number 🐱‍🐉
+        <Slide
+          // onClick={increment} -> TS error increment accept void | number 🐱‍🐉
           onClick={() => {
             if (count < dikrNiyaNum) {
               increment();
@@ -59,11 +54,31 @@ function OverLay() {
             <Progress />
             <Counter />
             <Text />
-            {count == +dikrNiyaNum && <RePlayButton />}
+            <div className="flex items-center justify-center space-x-4">
+              {count == +dikrNiyaNum && <RePlayButton />}
+              {count == +dikrNiyaNum && <CloseBtn2 />}
+            </div>
           </motion.div>
-        </motion.section>
+        </Slide>
       )}
     </AnimatePresence>
+  );
+}
+
+function CloseBtn2() {
+  const resetDikr = useAdrak((s) => s.resetDikr);
+  const resetCounter = useCounter((s) => s.resetCounter);
+  return (
+    <motion.button
+      layoutId="closeButton"
+      onClick={() => {
+        resetDikr();
+        resetCounter();
+      }}
+      className="  select-auto pointer-events-auto w-[65px] h-[65px] rounded-full  text-white   z-[1000] flex items-center justify-center mt-[40px] bg-red-500"
+    >
+      <IoClose size={50} />
+    </motion.button>
   );
 }
 

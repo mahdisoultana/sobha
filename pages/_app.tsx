@@ -1,9 +1,12 @@
-import { Variants, motion } from 'framer-motion';
+import { AnimatePresence, Variants, motion } from 'framer-motion';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const { pathname } = useRouter();
+  console.log(pathname);
   return (
     <>
       <Head>
@@ -101,20 +104,26 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="theme-color" content="#0f1526" />
       </Head>
-      <motion.section
-        variants={variant}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
-        <Component {...pageProps} />
-      </motion.section>
+      <div className="bg-gray-900">
+        <AnimatePresence>
+          <motion.section
+            key={pathname}
+            className="min-h-screen bg-gray-900 rtl:text-right w-[100vw] relative overflow-hidden "
+            variants={variant}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Component {...pageProps} />
+          </motion.section>
+        </AnimatePresence>
+      </div>
     </>
   );
 }
 
 const variant: Variants = {
-  animate: { opacity: 1, transition: { duration: 0.5, delayChildren: 0.5 } },
+  animate: { opacity: 1 },
   initial: { opacity: 0 },
-  exit: { opacity: 0, transition: { duration: 0.6, delayChildren: -0.1 } },
+  exit: { opacity: 0 },
 };

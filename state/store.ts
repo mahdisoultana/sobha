@@ -6,33 +6,43 @@ type Dikr = {
   text: string;
 };
 export const useAdrak = create<{
+  editMode: boolean;
   adkar: Dikr[];
-  add: (dirk: Dikr) => void;
+  addDikr: (dirk: Dikr) => void;
   selected: string | null;
   dikrNiya: string | null;
   setDikrNiya: (id: string | null) => void;
   setSelected: (id: string | null) => void;
   getDikr: () => Dikr | null;
   resetDikr: () => void;
-  setAdkar: (newOrder: any) => void;
+  setAdkar: (dikr: Dikr[] | ((dikr: Dikr[]) => Dikr[])) => void;
+  setEditMode: (mode: boolean | ((mode: boolean) => boolean)) => void;
 }>((set, get) => ({
+  editMode: false,
+  setEditMode: (mode) => {
+    set({ editMode: typeof mode == 'function' ? mode(get().editMode) : mode });
+  },
   adkar: [
     { text: '   سبحان الله', id: id() },
     { text: '  الحمد لله ', id: id() },
     { text: ' الله أكبر ', id: id() },
     { text: ' لا إله إلا الله', id: id() },
+    { text: ' سبحان الله وبحمده سبحان الله العظيم', id: id() },
   ],
-  add: (dikr: Dikr) => {
+  addDikr: (dikr: Dikr) => {
     set({ ...get(), adkar: [...get().adkar, dikr] });
   },
-  setAdkar: (s: any) => {
-    set({ ...get(), adkar: s });
+  setAdkar: (dikr: Dikr[] | ((dikr: Dikr[]) => Dikr[])) => {
+    set({
+      ...get(),
+      adkar: typeof dikr == 'function' ? dikr(get().adkar) : dikr,
+    });
   },
   selected: null,
   setSelected: (id: string | null) => {
-    set({ selected: id });
+    // only make the app work normally if we not in edit mode
+    if (!get().editMode) set({ selected: id });
   },
-
   dikrNiya: null,
   setDikrNiya: (id: string | null) => {
     set({ dikrNiya: id });

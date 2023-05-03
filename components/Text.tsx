@@ -6,7 +6,7 @@ function Text() {
 
   return (
     dikr && (
-      <motion.p layout className="text-5xl text-white mt-20">
+      <motion.p layout className="p-1 text-2xl text-white mt-10 text-center">
         {dikr.text}
       </motion.p>
     )

@@ -5,15 +5,18 @@ import CloseButton from './CloseButton';
 import Slide from './animate/Slide';
 function NiyatDikr() {
   const getDikr = useAdrak((s) => s.getDikr);
+  const selected = useAdrak((s) => s.selected);
   const setDikrNiya = useAdrak((s) => s.setDikrNiya);
   const [dikrS, setDikrS] = useState('33');
+  //✨ this does re-renderer the component because it's just a function ('_') thank you please continue
   const dikr = getDikr();
+
   return (
     <AnimatePresence>
-      {dikr && (
+      {selected && (
         <Slide className=" text-center bg-gray-800 flex items-center justify-center flex-col p-4 text-white">
           <CloseButton />
-          <div className="flex items-center justify-center flex-col p-4 space-y-20">
+          <article className="flex items-center justify-center flex-col p-4 space-y-20">
             <p className="">
               <span className="block text-xl"> نية قول</span>
               {dikr ? (
@@ -35,7 +38,7 @@ function NiyatDikr() {
               {' '}
               بدأ
             </button>
-          </div>
+          </article>
         </Slide>
       )}
     </AnimatePresence>

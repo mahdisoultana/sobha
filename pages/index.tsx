@@ -1,23 +1,22 @@
-import CardDikrButton from '../components/CardDikrButton';
+import ListAdkar from '../components/ListAdkar';
 import NiyatDikr from '../components/NiyatDikr';
 import OverLay from '../components/OverLay';
+import EditMode from '../components/settings/EditMode';
 import SettingButton from '../components/settings/SettingButton';
 import { useAdrak } from '../state/store';
 export default function Home() {
-  const { adkar } = useAdrak();
-
+  const editMode = useAdrak((s) => s.editMode);
   return (
-    <div className="min-h-screen bg-gray-900 rtl:text-right">
+    <>
+      <ListAdkar />
+      <EditMode />
       <SettingButton />
-      <article className="w-full min-h-[80vh] p-4 m-auto max-w-xl  flex items-center justify-center flex-col">
-        {/* <Reorder.Group axis="y" onReorder={setAdkar} values={adkar}> */}
-        {adkar.map((item, i) => (
-          <CardDikrButton key={item.id} id={item.id} text={item.text} />
-        ))}
-        {/* </Reorder.Group> */}
-      </article>
-      <NiyatDikr />
-      <OverLay />
-    </div>
+      {!editMode && (
+        <>
+          <NiyatDikr />
+          <OverLay />
+        </>
+      )}
+    </>
   );
 }
