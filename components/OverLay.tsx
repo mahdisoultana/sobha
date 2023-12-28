@@ -28,6 +28,11 @@ function OverLay() {
   const dikrNiyaNum = dikrNiya ? +dikrNiya : 0;
   useEffect(() => {
     if (count == dikrNiyaNum) {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(500); // Vibrate for 500 milliseconds
+      } else {
+        console.log('Vibration API not supported');
+      }
       run();
     }
   }, [count]);

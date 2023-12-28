@@ -20,7 +20,7 @@ function CardDikrButton({ text, id }: { text: string; id: string }) {
             }
           : { rotate: 0 }
       }
-      className={`z-[11] mb-5 w-full focus-within:opacity-90  relative   rounded   text-xl flex items-center justify-center p-2  ${
+      className={`z-[11] mb-5 w-full focus-within:opacity-90  relative   rounded    text-xl flex items-center justify-center p-2  ${
         editMode
           ? '  text-gray-900  bg-red-50 hover:bg-white '
           : 'hover:opacity-80 text-gray-900 bg-gray-100'
